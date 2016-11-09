@@ -74,10 +74,14 @@ Example multiple:
          * @attribute opened
          */
         opened: {
-         type: Boolean,
+         type: Object,
          value: false,
          notify: true,
          reflectToAttribute: true
+        },
+        overrideTap: {
+          type: Object,
+          value: false
         }
       },
 
@@ -118,7 +122,9 @@ Example multiple:
        * Listener to #header tap. And fire custom events.
        */
       _onHeaderTap: function(e) {
-        this.toggle();
+        if (!this.overrideTap) {
+          this.toggle();
+        }
         this.fire('iron-accordion-header-tap');
       },
 
@@ -142,3 +148,4 @@ Example multiple:
     });
   </script>
 </dom-module>
+
